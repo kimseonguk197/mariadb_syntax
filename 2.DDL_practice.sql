@@ -43,3 +43,17 @@ describe author;
 show index from author;
 ALTER TABLE your_table DROP INDEX index_name;
 ALTER TABLE author ADD CONSTRAINT unique_email UNIQUE (email);
+
+-- ON UPDATE CASECADE 실습
+SELECT  * FROM  INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'post';
+ALTER TABLE post DROP FOREIGN KEY post_ibfk_1;
+ALTER TABLE post DROP INDEX author_id;
+ALTER TABLE post ADD CONSTRAINT post_author_fk FOREIGN KEY (author_id) REFERENCES author(id) ON UPDATE CASCADE;
+
+-- ON DELETE CASCADE 실습
+ALTER TABLE post DROP FOREIGN KEY post_author_fk, DROP INDEX post_author_fk;
+ALTER TABLE post ADD CONSTRAINT post_author_fk FOREIGN KEY (author_id) REFERENCES author(id) ON DELETE CASCADE;
+
+-- ON DELETE/UPDATE SET NULL 실습
+ALTER TABLE post ADD CONSTRAINT post_author_fk FOREIGN KEY (author_id) REFERENCES author(id) ON DELETE SET NULL;
+ALTER TABLE post ADD CONSTRAINT post_author_fk FOREIGN KEY (author_id) REFERENCES author(id) ON UPDATE SET NULL;

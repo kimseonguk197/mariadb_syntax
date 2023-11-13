@@ -47,8 +47,9 @@ CASE author_id
    ELSE 'Other Author'
    END AS author_type
 FROM posts;
+
 --if 문 사용
- SELECT     id, title, contents,    IF(author_id = 1, 'Author One', 'Other Author') AS author_nameFROM posts;
+ SELECT id, title, contents,    IF(author_id = 1, 'Author One', 'Other Author') AS author_nameFROM posts;
 
 -- ifnull 을 사용하여 만약 contents가 null로 비어있으면 no contents로 출력되도록 select문 작성
 SELECT  id, IFNULL(contents, 'no contents')FROM post;
