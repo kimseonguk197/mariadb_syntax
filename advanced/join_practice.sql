@@ -26,3 +26,14 @@ SELECT * FROM post WHERE author_id IN (
     WHERE age >= 25
 );
 
+-- 만약 post마다 원고료 컬럼을 추가후 데이터를 넣고, 작가별 원고료 총합, 원고료 평균 구하기
+ALTER TABLE post ADD COLUMN price decimal;
+select author_id, sum(price), avg(price) from post group by author_id
+
+-- 작가id별이 아닌 작가명, 총합, 평균 출력
+select a.name, sum(p.price), avg(p.price) from post p left join author a on a.id = p.author_id group by p.author_id
+
+-- 각 저자가 작성한 글 중에서 최소 가격과 최대 가격을 찾아서 작가id, 최소값, 최대값으로 출력
+SELECT author_id, MIN(price) AS min_price, MAX(price) AS max_price
+FROM post
+GROUP BY author_id;
