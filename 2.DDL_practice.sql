@@ -30,3 +30,16 @@ ALTER TABLE author ADD COLUMN age TINYINT unsigned;
 
 -- role타입 enum타입으로 추가
 ALTER TABLE author ADD COLUMN  role ENUM('user', 'admin') NOT NULL DEFAULT 'user';
+
+-- post테이블에 createdTime 컬럼 추가
+ALTER TABLE post ADD COLUMN created_time DATETIME(6) DEFAULT CURRENT_TIMESTAMP(6);
+
+-- ALTER문을 써서 post의 title을 not null 조건으로 바꿔보자
+ALTER TABLE post modify column title varchar(255) not null;
+
+-- author의 email에 unique조건을 추가하는 alter문
+ALTER TABLE author modify column email varchar(255) unique;
+describe author;
+show index from author;
+ALTER TABLE your_table DROP INDEX index_name;
+ALTER TABLE author ADD CONSTRAINT unique_email UNIQUE (email);

@@ -32,3 +32,23 @@ insert author(id, name, email, age) values(7, 'kim7', 'abc7@naver.com', 300);
 insert author(id, role) values(8, 'admin');
 insert author(id, role) values(9, 'super-user');
 insert author(id ) values(9);
+
+
+-- post테이블에 createdTime 컬럼 추가후 데이터 insert
+insert post(id, title, contents) values(5, 'title5', 'contents5 ... ');
+
+-- post테이블에서 id, title, contents, 그리고 author_id를 조회하되 author_id가 만약 1이면 first_author, 2이면 second_author로 
+-- 조회가 되도록 하고 3이상 그외의 경우 etc_authors로 조회도록 하여라. 
+-- case when 사용
+SELECT id, title, contents,
+CASE author_id 
+   WHEN 1 THEN 'First Author'
+   WHEN 2 THEN 'Second Author'
+   ELSE 'Other Author'
+   END AS author_type
+FROM posts;
+--if 문 사용
+ SELECT     id, title, contents,    IF(author_id = 1, 'Author One', 'Other Author') AS author_nameFROM posts;
+
+-- ifnull 을 사용하여 만약 contents가 null로 비어있으면 no contents로 출력되도록 select문 작성
+SELECT  id, IFNULL(contents, 'no contents')FROM post;
