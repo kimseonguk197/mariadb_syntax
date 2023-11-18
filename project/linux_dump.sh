@@ -1,6 +1,3 @@
-
-sudo apt-get install git
-
 # MariaDB 설치
 sudo apt-get update
 1234
