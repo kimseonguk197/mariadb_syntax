@@ -1,5 +1,5 @@
 -- insert 기본
-insert author(id, name, email) values(1, 'kim', 'abc@naver.com');
+insert into author(id, name, email) values(1, 'kim', 'abc@naver.com');
 
 -- update 기본
 update author set email='abc2@naver.com' where id=1;
@@ -28,3 +28,8 @@ SELECT CAST(20200101 AS DATE);
 -- CONVERT  
 SELECT CONVERT('2020-01-01', DATETIME);
 
+-- date_format  
+SELECT date_format('2020-01-01 12:00:00', '%Y-%m-%d') as date;
+
+-- like 날짜 조회
+SELECT * FROM post where created_time like '2021%';

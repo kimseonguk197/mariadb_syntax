@@ -28,6 +28,10 @@ SHOW CREATE TABLE post;
 -- author age컬럼 추가하여 tiny int로 설정
 ALTER TABLE author ADD COLUMN age TINYINT unsigned;
 
+
+-- post에 price라는 원고료컬럼을 추가 후 데이터를 넣기. 원고료 컬럼은 총자릿수 10자리 및 소수점단위는 3자리까지 가능.
+ALTER TABLE post ADD COLUMN price   DECIMAL(10,3);
+
 -- role타입 enum타입으로 추가
 ALTER TABLE author ADD COLUMN  role ENUM('user', 'admin') NOT NULL DEFAULT 'user';
 
